@@ -46,6 +46,19 @@
 </div>
 
 <style>
+  .center-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    gap: 20px;
+    padding: 40px 10px;
+    box-sizing: border-box;
+  }
+
   h1 {
     color: #eff4ac;
     font-size: 6rem;
@@ -84,6 +97,7 @@
     gap: 20px;
     padding: 20px;
     perspective: 1000px;
+    flex-wrap: wrap;
   }
 
   .card {
@@ -130,10 +144,13 @@
   }
 
   .front {
+    background-color: transparent;
+    border: 3px solid #eff4ac;
     display: flex;
     justify-content: center;
     align-items: center;
     transform: rotateY(0deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .back {
@@ -154,27 +171,35 @@
     transform: rotateY(180deg);
   }
 
-  .fcard .front {
-    background-color: #bc987e;
-  }
-
   .fcard .back {
     background-image: url(".//image/fchoice.jpg");
-  }
-
-  .scard .front {
-    background-color: #bc987e;
   }
 
   .scard .back {
     background-image: url("./image/schoice.jpg");
   }
 
-  .tcard .front {
-    background-color: #bc987e;
-  }
-
   .tcard .back {
     background-image: url("./image/tchoice.jpg");
+  }
+
+  @media screen and (max-width: 768px) {
+    h1 {
+        font-size: 3rem;  
+        margin-top: 80px; 
+    }
+
+    .card-container {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 40px;  
+    }
+    
+    .btn-back {
+        top: 15px;
+        left: 15px;
+        font-size: 16px;
+        padding: 8px 20px;
+    }
   }
 </style>

@@ -23,12 +23,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     text-align: center;
     gap: 20px;
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    box-sizing: border-box;
   }
 
   .center-box h1 {
@@ -56,5 +57,16 @@
     color: black;
     transform: scale(1.05);
     box-shadow: 0 0 15px #eff4ac;
+  }
+
+  @media screen and (max-width: 768px) {
+    .center-box h1 {
+        font-size: 3.5rem;
+    }
+    
+    .btn-next {
+        font-size: 20px;
+        padding: 12px 30px;
+    }
   }
 </style>
