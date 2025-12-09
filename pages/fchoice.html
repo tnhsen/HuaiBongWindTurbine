@@ -1,15 +1,463 @@
-<div
-  class="center-box"
-  style="
-    background-image: url('./image/background.jpg');
+<div class="fchoice-container">
+  <nav id="sticky-header">
+    <button class="btn-back" onclick="goBack()">❮ ย้อนกลับ</button>
+    <h1>ประวัติและวิวัฒนาการ</h1>
+  </nav>
+
+  <div id="scroll-btn" class="nav-btn" onclick="scrollToNext()">
+    <span>▼</span>
+  </div>
+
+  <section
+    class="card-section"
+    style="background-image: url('./image/fchoice.jpg')"
+  >
+    <div class="scroll-hint">เลื่อนลงเพื่อดูเรื่องราว 👇</div>
+  </section>
+
+  <section
+    class="card-section split-screen"
+    style="background-image: url('./image/background.jpg')"
+  >
+    <div class="content-box left-col intro-box">
+      <p>
+        <b>ทุ่งกังหันลมห้วยบง</b> <br />
+        ตั้งอยู่ที่ตำบลห้วยบง อำเภอด่านขุนทด จังหวัดนครราชสีมา
+      </p>
+      <br />
+      <p>เป็นโครงการผลิตไฟฟ้าพลังลมขนาดใหญ่แห่งแรกของประเทศไทย จำนวน 90 ต้น</p>
+    </div>
+    <div class="media-box right-col"></div>
+  </section>
+
+  <section
+    class="card-section split-screen full-split"
+    style="background-image: url('./image/bg2.jpg')"
+  >
+    <div class="media-box left-col"></div>
+    <div
+      class="right-col"
+      style="background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px)"
+    >
+      <div
+        class="content-box intro-box"
+        style="
+          background: none;
+          border: none;
+          box-shadow: none;
+          backdrop-filter: none;
+        "
+      >
+        <p>
+          <b>ครอบคลุมพื้นที่กว่า 10,000 ไร่</b>
+        </p>
+        <p>
+          และมีกำลังการผลิตสูงที่สุดในภูมิภาคเอเชียตะวันออกเฉียงใต้<br />โดยการไฟฟ้าฝ่ายผลิตแห่งประเทศไทย
+          (กฟผ.) เป็นผู้รับซื้อ
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="card-section split-screen full-split"
+    style="background-image: url('./image/background.jpg')"
+  >
+    <div
+      class="left-col"
+      style="background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px)"
+    >
+      <div
+        class="content-box intro-box"
+        style="
+          background: none;
+          border: none;
+          box-shadow: none;
+          backdrop-filter: none;
+        "
+      >
+        <p>
+          ปัจจุบัน<br />
+          ทุ่งกังหันลมห้วยบงได้รับการส่งเสริมเป็น
+          <b>สถานที่ท่องเที่ยวที่สำคัญของจังหวัด</b>
+          มีนักท่องเที่ยวมาแวะพักผ่อนอยู่เสมอ
+          และสามารถมองเห็นทุ่งกังหันลมจากทางหลวงแผ่นดินหมายเลข 2256
+        </p>
+      </div>
+    </div>
+
+    <div class="media-box right-col"></div>
+  </section>
+
+  <section class="card-section" style="background-color: #fbf3d1">
+    <div class="content-box intro-box">
+      <p>
+        <b>ขอบคุณที่ติดตาม</b>
+      </p>
+
+      <p>อย่าลืมแวะไปเที่ยวชมของจริงนะครับ!</p>
+    </div>
+  </section>
+</div>
+
+<style>
+  .fchoice-container {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Sarabun", sans-serif;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y proximity;
+  }
+
+  #sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2000;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #sticky-header .btn-back {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    pointer-events: auto;
+    font-size: 1rem;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  #sticky-header .btn-back:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  #sticky-header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 4rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    color: #fff;
+    white-space: nowrap;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #sticky-header.shrink {
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+  }
+  #sticky-header.shrink .btn-back {
+    top: 50%;
+    transform: translateY(-50%);
+    border-color: #eff4ac;
+    color: #eff4ac;
+  }
+  #sticky-header.shrink h1 {
+    font-size: 1.5rem;
+    color: #eff4ac;
+  }
+
+  .card-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-  "
->
-  <h1>ประวัติและวิวัฒนาการ</h1>
-  <p>...</p>
-  <div class="button-group">
-    <button class="btn-back" onclick="goBack()">ย้อนกลับ</button>
-  </div>
-</div>
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+
+  .content-box {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 700px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  .content-box.active-anim {
+    animation: slideUpContent 1s forwards 0.3s;
+  }
+
+  .content-box p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .card-section.split-screen {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    justify-items: center;
+    padding: 0 50px;
+  }
+
+  .split-screen .left-col img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+
+  .split-screen .left-col img.active-anim {
+    animation: slideInLeft 1s forwards 0.3s;
+  }
+
+  .split-screen .left-col {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .split-screen .right-col {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .split-screen .right-col img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  .split-screen .right-col img.active-anim {
+    animation: slideInRight 1s forwards 0.3s;
+  }
+
+  @keyframes slideInRight {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideUpContent {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px #000;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .nav-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2000;
+
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .nav-btn:hover {
+    background: #eff4ac;
+    transform: scale(1.1);
+    border-color: #eff4ac;
+  }
+
+  .nav-btn span {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .nav-btn:hover span {
+    color: #000;
+  }
+
+  .nav-btn.rotate span {
+    transform: rotate(180deg);
+  }
+
+  .intro-box {
+    max-width: 450px !important;
+    font-weight: 700;
+    padding: 30px !important;
+  }
+
+  .intro-box b {
+    font-size: 3rem;
+    line-height: 1.2;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #eff4ac;
+    text-shadow: 2px 2px 0 #000;
+  }
+
+  .intro-box p {
+    font-size: 1.5rem !important;
+  }
+
+  .card-section.split-screen.full-split {
+    grid-template-columns: 50% 50%;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .split-screen.full-split .left-col,
+  .split-screen.full-split .right-col {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .split-screen.full-split img {
+    max-width: 90%;
+  }
+
+  @media screen and (max-width: 768px) {
+    #sticky-header h1 {
+      font-size: 2rem;
+      white-space: normal;
+      text-align: center;
+      width: 80%;
+    }
+    #sticky-header.shrink h1 {
+      font-size: 1.2rem;
+    }
+
+    .media-box:empty {
+      display: none !important;
+    }
+
+    .card-section.split-screen,
+    .card-section.split-screen.full-split {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 20px 80px 20px;
+      gap: 20px;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .intro-box {
+      padding: 20px !important;
+      width: 100% !important;
+    }
+    .intro-box b {
+      font-size: 2rem;
+    }
+    .intro-box p {
+      font-size: 1.1rem !important;
+    }
+
+    .split-screen img,
+    .split-screen.full-split img {
+      max-width: 100%;
+      max-height: 300px;
+      transform: translateY(0) !important;
+      margin-bottom: 20px;
+    }
+
+    .split-screen.full-split .left-col,
+    .split-screen.full-split .right-col {
+      padding: 0;
+      width: 100%;
+      height: auto;
+      background: transparent !important;
+    }
+
+    .split-screen.full-split .content-box {
+      background: rgba(0, 0, 0, 0.7) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-btn {
+      width: 50px;
+      height: 50px;
+      bottom: 20px;
+      right: 20px;
+    }
+    .nav-btn span {
+      font-size: 1.2rem;
+    }
+  }
+</style>
