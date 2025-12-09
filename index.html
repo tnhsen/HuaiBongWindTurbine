@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="Style.css"> 
+  </head>
+  <body>
+    
+    <div id="content">
+      <div id="homepage" class="page active"></div>
+      <div id="istrue" class="page"></div>
+      <div id="fchoice" class="page"></div>
+      <div id="schoice" class="page"></div>
+      <div id="tchoice" class="page"></div>
+    </div>
+  </body>
+
+  <script>
+    let historyStack = [];
+    
+    async function showPage(pageId, filePath, saveHistory = true) {
+      const currentActive = document.querySelector(".page.active");
+
+      if (currentActive && saveHistory) {
+        historyStack.push(currentActive.id);
+      }
+
+      const pages = document.querySelectorAll(".page");
+      pages.forEach((page) => page.classList.remove("active"));
+
+      const selectedPage = document.getElementById(pageId);
+      
+      if (selectedPage) {
+          if (filePath && selectedPage.innerHTML.trim() === "") {
+            try {
+              const response = await fetch(filePath);
+              if (response.ok) {
+                selectedPage.innerHTML = await response.text();
+              }
+            } catch (error) {
+              console.error("Error loading file:", error);
+            }
+          }
+          selectedPage.classList.add("active");
+      } else {
+          console.error("ไม่พบหน้านี้ใน HTML: " + pageId);
+      }
+
+      console.log("History:", historyStack);
+    }
+
+    function goBack() {
+      if (historyStack.length === 0) {
+        alert("ย้อนกลับไม่ได้แล้วครับ นี่หน้าแรกสุด");
+        return;
+      }
+
+      const previousPageId = historyStack.pop();
+
+      showPage(previousPageId, null, false);
+    }
+
+    showPage('homepage', 'pages/home.html', false);
+  </script>
+</html>

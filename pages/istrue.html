@@ -1,0 +1,180 @@
+<div
+  class="center-box"
+  style="
+    background-image: url('/image/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  "
+>
+  <h1>อยากรู้จักส่วนไหนก่อนดีล่ะ</h1>
+
+  <div class="button-group">
+    <button class="btn-back" onclick="goBack()">ย้อนกลับ</button>
+  </div>
+
+  <div class="card-container">
+    <div class="card fcard" onclick="showPage('fchoice', 'pages/fchoice.html')">
+      <div class="front">
+        <h2>ประวัติและวิวัฒนาการ</h2>
+      </div>
+      <div class="back">
+        <h3>
+          กังหันลมห้วยบง<br />มีประวัติและวิวัฒนาการเป็นมายังไงนะ สงสัยจัง
+        </h3>
+      </div>
+    </div>
+
+    <div class="card scard" onclick="showPage('schoice', 'pages/schoice.html')">
+      <div class="front">
+        <h2>หลักการทำงาน</h2>
+      </div>
+      <div class="back">
+        <h3>ว่าแต่หลักการทำงานของกังหันลมเป็นยังไงกันนะ</h3>
+      </div>
+    </div>
+
+    <div class="card tcard" onclick="showPage('tchoice', 'pages/tchoice.html')">
+      <div class="front">
+        <h2>ข่าวสารห้วยบง</h2>
+      </div>
+      <div class="back">
+        <h3>อยากรู้ข่าวสารเกี่ยวกับกังหันลมห้วยบงจัง</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  h1 {
+    color: #eff4ac;
+    font-size: 6rem;
+    font-weight: 900;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px #000, -1px -1px 0 #000, 1px -1px 0 #000,
+      -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
+  .btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 14px;
+    padding: 5px 15px;
+    background-color: transparent;
+    border: 1px solid #eff4ac;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #eff4ac;
+    transition: all 0.2s;
+  }
+
+  .btn-back:hover {
+    background-color: #eff4ac;
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #eff4ac;
+  }
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    perspective: 1000px;
+  }
+
+  .card {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+  }
+
+  .card h2 {
+    color: #eff4ac;
+    margin: 0;
+    padding: 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-shadow: 2px 2px 0px #000, -1px -1px 0 #000, 1px -1px 0 #000,
+      -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+
+  .card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #eff4ac;
+    background-color: transparent;
+    box-shadow: none;
+    width: 100%;
+    padding: 0 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .front,
+  .back {
+    text-align: center;
+    padding: 15px;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    backface-visibility: hidden;
+  }
+
+  .front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transform: rotateY(180deg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
+  }
+
+  .fcard:hover,
+  .scard:hover,
+  .tcard:hover {
+    transform: rotateY(180deg);
+  }
+
+  .fcard .front {
+    background-color: #bc987e;
+  }
+
+  .fcard .back {
+    background-image: url("/image/fchoice.jpg");
+  }
+
+  .scard .front {
+    background-color: #bc987e;
+  }
+
+  .scard .back {
+    background-image: url("/image/schoice.jpg");
+  }
+
+  .tcard .front {
+    background-color: #bc987e;
+  }
+
+  .tcard .back {
+    background-image: url("/image/tchoice.jpg");
+  }
+</style>
