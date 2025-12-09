@@ -1,6 +1,6 @@
 <div class="fchoice-container">
   <nav id="sticky-header">
-    <button class="btn-back" onclick="goBack()">❮ ย้อนกลับ</button>
+    <button class="btn-back" onclick="goBack()">❮ <span>ย้อนกลับ</span></button>
     <h1>ประวัติและวิวัฒนาการ</h1>
   </nav>
 
@@ -12,7 +12,7 @@
     class="card-section"
     style="background-image: url('./image/fchoice.jpg')"
   >
-    <div class="scroll-hint">เลื่อนลงเพื่อดูเรื่องราว 👇</div>
+    <div class="scroll-hint">เลื่อนลงเพื่อดูเรื่องราว</div>
   </section>
 
   <section
@@ -196,7 +196,9 @@
     backdrop-filter: blur(5px);
     padding: 40px;
     border-radius: 20px;
-    max-width: 700px;
+    max-width: 500px;
+    width: 90%;
+
     text-align: center;
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -392,72 +394,118 @@
   }
 
   @media screen and (max-width: 768px) {
-    #sticky-header h1 {
-      font-size: 2rem;
-      white-space: normal;
-      text-align: center;
-      width: 80%;
-    }
-    #sticky-header.shrink h1 {
-      font-size: 1.2rem;
-    }
-
-    .media-box:empty {
-      display: none !important;
+    .fchoice-container,
+    .card-section {
+      overflow-x: hidden !important;
+      width: 100% !important;
     }
 
     .card-section.split-screen,
     .card-section.split-screen.full-split {
       display: flex !important;
       flex-direction: column;
-      justify-content: center;
-      padding: 100px 20px 80px 20px;
-      gap: 20px;
-      height: auto;
-      min-height: 100vh;
+      justify-content: center !important;
+      align-items: center !important; 
+      padding: 60px 0 !important;   
+      gap: 20px !important;
     }
 
+    .content-box,
     .intro-box {
-      padding: 20px !important;
-      width: 100% !important;
-    }
-    .intro-box b {
-      font-size: 2rem;
-    }
-    .intro-box p {
-      font-size: 1.1rem !important;
+      width: 85% !important;      
+      max-width: 350px !important;  
+      border-radius: 15px !important; 
+      
+      margin: 0 auto !important; 
+      padding: 25px 20px !important; 
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+      background: rgba(0, 0, 0, 0.6) !important; 
+      backdrop-filter: blur(5px) !important;
     }
 
-    .split-screen img,
+    .intro-box b {
+      font-size: 1.5rem !important;
+      margin-bottom: 10px !important;
+      display: block;
+    }
+
+    .intro-box p {
+      font-size: 1rem !important;  
+      line-height: 1.5 !important; 
+    }
+
+    .split-screen .left-col img,
+    .split-screen .right-col img,
     .split-screen.full-split img {
-      max-width: 100%;
-      max-height: 300px;
-      transform: translateY(0) !important;
-      margin-bottom: 20px;
+      width: 85% !important;        
+      max-width: 350px !important;
+      height: auto !important;
+      object-fit: cover;
+      border-radius: 15px !important;
+      margin: 0 auto 10px auto !important; 
+      
+      transform: translateY(30px) !important;
+      opacity: 0;
+    }
+
+    .split-screen .left-col img.active-anim,
+    .split-screen .right-col img.active-anim,
+    .content-box.active-anim {
+      animation: slideUpContent 0.8s forwards 0.2s !important;
+    }
+
+    .media-box:empty {
+      display: none !important;
     }
 
     .split-screen.full-split .left-col,
     .split-screen.full-split .right-col {
-      padding: 0;
-      width: 100%;
+      padding: 0 !important;
       height: auto;
       background: transparent !important;
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+    }
+   
+    #sticky-header h1 {
+      font-size: 1.3rem;
+      width: 80%;
+      text-align: center;
+      pointer-events: none; 
+    }
+    #sticky-header .btn-back {
+      z-index: 10;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      
+      width: auto !important;
+      height: 40px !important;
+      padding: 0 20px !important;
+      border-radius: 50px !important;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
     }
 
-    .split-screen.full-split .content-box {
-      background: rgba(0, 0, 0, 0.7) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      backdrop-filter: blur(5px);
+    #sticky-header .btn-back span {
+      display: inline-block !important;
+      font-size: 0.9rem;
     }
 
-    .nav-btn {
-      width: 50px;
-      height: 50px;
-      bottom: 20px;
-      right: 20px;
+    #sticky-header.shrink .btn-back {
+      width: 40px !important;  
+      height: 40px !important;
+      padding: 0 !important; 
+      border-radius: 50% !important;
     }
-    .nav-btn span {
-      font-size: 1.2rem;
+
+    #sticky-header.shrink .btn-back span {
+      display: none !important;
     }
   }
 </style>

@@ -22,19 +22,22 @@
   function scrollToNext() {
     const activePage = document.querySelector(".page.active");
     if (!activePage) return;
-
     const scrollContainer = activePage.querySelector('.fchoice-container');
     if (!scrollContainer) return;
-
-    const viewportHeight = scrollContainer.clientHeight;
+    const sections = activePage.querySelectorAll('section');
+    
     const currentScroll = scrollContainer.scrollTop;
-    const isBottom = currentScroll + viewportHeight >= scrollContainer.scrollHeight - 50;
-    if (isBottom) {
+    const viewportHeight = scrollContainer.clientHeight;
+    if (currentScroll + viewportHeight >= scrollContainer.scrollHeight - 50) {
       scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const nextPage = Math.floor((currentScroll + 10) / viewportHeight) + 1;
-      const targetScroll = nextPage * viewportHeight;
-      scrollContainer.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      return;
+    }
+    for (let i = 0; i < sections.length; i++) {
+      const sectionTop = sections[i].offsetTop;
+      if (sectionTop > currentScroll + 10) {
+        scrollContainer.scrollTo({ top: sectionTop, behavior: 'smooth' });
+        break; 
+      }
     }
   }
 
