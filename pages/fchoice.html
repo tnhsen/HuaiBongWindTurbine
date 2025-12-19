@@ -27,7 +27,20 @@
       <br />
       <p>เป็นโครงการผลิตไฟฟ้าพลังลมขนาดใหญ่แห่งแรกของประเทศไทย จำนวน 90 ต้น</p>
     </div>
-    <div class="media-box right-col"></div>
+
+    <div class="media-box right-col" style="padding: 20px">
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15406.825772869775!2d101.4834712!3d15.1194993!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311ef2d695d0c6df%3A0x4b9bcf16d00b39b7!2z4Lia4LmJ4Liy4LiZ4LiX4Li44LmI4LiH4LiB4Lix4LiH4Lir4Lix4LiZ4Lil4Lih!5e0!3m2!1sth!2sth!4v1766138501502!5m2!1sth!2sth"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
   </section>
 
   <section
@@ -35,18 +48,9 @@
     style="background-image: url('./image/bg2.jpg')"
   >
     <div class="media-box left-col"></div>
-    <div
-      class="right-col"
-      style="background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px)"
-    >
+    <div class="right-col empty">
       <div
         class="content-box intro-box"
-        style="
-          background: none;
-          border: none;
-          box-shadow: none;
-          backdrop-filter: none;
-        "
       >
         <p>
           <b>ครอบคลุมพื้นที่กว่า 10,000 ไร่</b>
@@ -63,18 +67,9 @@
     class="card-section split-screen full-split"
     style="background-image: url('./image/background.jpg')"
   >
-    <div
-      class="left-col"
-      style="background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px)"
-    >
+    <div class="left-col empty">
       <div
         class="content-box intro-box"
-        style="
-          background: none;
-          border: none;
-          box-shadow: none;
-          backdrop-filter: none;
-        "
       >
         <p>
           ปัจจุบัน<br />
@@ -90,7 +85,7 @@
   </section>
 
   <section class="card-section" style="background-color: #fbf3d1">
-    <div class="content-box intro-box">
+    <div class="content-box center intro-box">
       <p>
         <b>ขอบคุณที่ติดตาม</b>
       </p>
@@ -101,13 +96,19 @@
 </div>
 
 <style>
+  body {
+    overflow-x: hidden;
+  }
+
   .fchoice-container {
     width: 100%;
+    max-width: 100vw;
     margin: 0;
     padding: 0;
     font-family: "Sarabun", sans-serif;
     height: 100vh;
     overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
   }
 
@@ -192,8 +193,7 @@
   }
 
   .content-box {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
+    
     padding: 40px;
     border-radius: 20px;
     max-width: 500px;
@@ -201,9 +201,16 @@
 
     text-align: center;
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    
     transform: translateY(50px);
     opacity: 0;
+  }
+
+  .content-box.center.intro-box,
+  .content-box.left-col.intro-box{
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .content-box.active-anim {
@@ -263,6 +270,16 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     opacity: 0;
     transform: translateX(50px);
+  }
+
+  .card-section.split-screen.full-split .right-col.empty {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+  }
+
+  .card-section.split-screen.full-split .left-col.empty {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
   }
 
   .split-screen .right-col img.active-anim {
@@ -393,34 +410,51 @@
     max-width: 90%;
   }
 
+  .map-container {
+    width: 100%;
+    height: 400px;
+    max-width: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInRight 1s forwards 0.5s;
+  }
+
   @media screen and (max-width: 768px) {
     .fchoice-container,
     .card-section {
-      overflow-x: hidden !important;
-      width: 100% !important;
+      overflow-x: hidden;
+      width: 100%;
     }
 
-    .card-section.split-screen,
+    .card-section.split-screen {
+      display: flex !important;
+      flex-direction: column;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding: 60px 0 !important;
+      gap: 20px !important;
+    }
     .card-section.split-screen.full-split {
       display: flex !important;
       flex-direction: column;
-      justify-content: center !important;
-      align-items: center !important; 
-      padding: 60px 0 !important;   
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding: 100px 0 !important;
       gap: 20px !important;
     }
 
     .content-box,
     .intro-box {
-      width: 85% !important;      
-      max-width: 350px !important;  
-      border-radius: 15px !important; 
-      
-      margin: 0 auto !important; 
-      padding: 25px 20px !important; 
+      width: 85% !important;
+      max-width: 350px !important;
+      border-radius: 15px !important;
+
+      margin: 0 auto !important;
+      padding: 25px 20px !important;
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
-      background: rgba(0, 0, 0, 0.6) !important; 
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
       backdrop-filter: blur(5px) !important;
     }
 
@@ -431,20 +465,20 @@
     }
 
     .intro-box p {
-      font-size: 1rem !important;  
-      line-height: 1.5 !important; 
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
     }
 
     .split-screen .left-col img,
     .split-screen .right-col img,
     .split-screen.full-split img {
-      width: 85% !important;        
+      width: 85% !important;
       max-width: 350px !important;
       height: auto !important;
       object-fit: cover;
       border-radius: 15px !important;
-      margin: 0 auto 10px auto !important; 
-      
+      margin: 0 auto 10px auto !important;
+
       transform: translateY(30px) !important;
       opacity: 0;
     }
@@ -461,31 +495,43 @@
 
     .split-screen.full-split .left-col,
     .split-screen.full-split .right-col {
-      padding: 0 !important;
+      padding: 0;
       height: auto;
-      background: transparent !important;
-      width: 100% !important;
+      background: transparent;
+      width: 100%;
       display: flex;
       justify-content: center;
     }
-   
+
+    .card-section.split-screen.full-split .right-col.empty,
+    .card-section.split-screen.full-split .left-col.empty {
+      background-color: transparent;
+      backdrop-filter: none;
+      width: 100%
+    }
+
+    .split-screen.full-split .content-box{
+      background: rgba(0, 0, 0, 0.6); 
+      backdrop-filter: blur(5px);
+    }
+
     #sticky-header h1 {
       font-size: 1.3rem;
       width: 80%;
       text-align: center;
-      pointer-events: none; 
+      pointer-events: none;
     }
     #sticky-header .btn-back {
       z-index: 10;
       position: absolute;
       top: 20px;
       left: 20px;
-      
+
       width: auto !important;
       height: 40px !important;
       padding: 0 20px !important;
       border-radius: 50px !important;
-      
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -498,14 +544,27 @@
     }
 
     #sticky-header.shrink .btn-back {
-      width: 40px !important;  
+      width: 40px !important;
       height: 40px !important;
-      padding: 0 !important; 
+      padding: 0 !important;
       border-radius: 50% !important;
     }
 
     #sticky-header.shrink .btn-back span {
       display: none !important;
+    }
+
+    .map-container {
+      height: 250px;
+      width: 90% !important;
+      margin: 0 auto;
+      transform: translateY(30px);
+    }
+
+    .card-section.split-screen {
+      height: auto !important;
+      min-height: 100vh;
+      padding: 100px 0 !important;
     }
   }
 </style>
