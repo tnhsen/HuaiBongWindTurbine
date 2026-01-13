@@ -1,11 +1,576 @@
-<div
-  class="center-box"
-  
->
-  <h1>หลักการทำงาน</h1>
-  <p></p>
-  <img src="">
-  <div class="button-group">
-    <button class="btn-back" onclick="goBack()">ย้อนกลับ</button>
+<div class="fchoice-container wind-page-scope" id="mainContainer">
+  <nav id="sticky-header">
+    <button class="btn-back" onclick="goBack()">❮ <span>ย้อนกลับ</span></button>
+    <h1>หลักการทำงาน</h1>
+  </nav>
+
+  <div id="scroll-btn" class="nav-btn" onclick="scrollToContent()">
+    <span>▼</span>
+  </div>
+
+  <section class="wind-hero">
+    <div class="scroll-hint">เลื่อนลงเพื่อศึกษาข้อมูล</div>
+  </section>
+
+  <div class="content-container" id="content-start">
+    <section class="section-wrapper reveal">
+      <h2 class="section-title">หลักการทำงานพื้นฐาน</h2>
+      <div class="concept-box">
+        <p>
+          "หลักการทำงานของกังหันลมคือ การใช้
+          <strong>แรงยก (Lift)</strong>
+          จากลมที่พัดผ่านใบพัดที่ออกแบบคล้ายปีกเครื่องบิน
+          ทำให้ใบพัดหมุนจนเกิดเป็น<strong>พลังงานกล</strong>
+          จากนั้นจะถูกส่งผ่านเพลาไปยัง <strong>เครื่องกำเนิดไฟฟ้า</strong>
+          เพื่อแปลงเป็นพลังงานไฟฟ้า
+          โดยมีระบบเกียร์และระบบควบคุมอัจฉริยะคอยดูแลการทำงาน"
+        </p>
+      </div>
+    </section>
+
+    <section class="section-wrapper reveal">
+      <h2 class="section-title">ขั้นตอนการทำงานโดยละเอียด</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-number">01</span>
+          <h3>จับพลังงานลม</h3>
+          <p>
+            เมื่อลมพัดผ่านใบพัด จะเกิดความแตกต่างของแรงดันอากาศ (แรงยก)
+            ทำให้ใบพัดเริ่มหมุนอย่างต่อเนื่อง
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">02</span>
+          <h3>แปลงเป็นพลังงานกล</h3>
+          <p>
+            การหมุนของใบพัด (โรเตอร์)
+            จะหมุนเพลาหลักที่เชื่อมต่ออยู่ภายในห้องเครื่อง (Nacelle)
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">03</span>
+          <h3>เพิ่มความเร็วรอบ</h3>
+          <p>
+            เพลาหลักหมุนเข้าสู่ชุดเกียร์ (Gearbox) เพิ่มความเร็วจาก ~18 เป็น
+            1,800 รอบ/นาที เพื่อปั่นไฟ
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">04</span>
+          <h3>สร้างกระแสไฟฟ้า</h3>
+          <p>
+            เพลาความเร็วสูงหมุนเครื่องกำเนิดไฟฟ้า (Generator)
+            ใช้หลักการเหนี่ยวนำแม่เหล็กไฟฟ้า
+          </p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">05</span>
+          <h3>ควบคุมและส่งไฟฟ้า</h3>
+          <p>
+            ระบบปรับทิศทางรับลม (Yaw Drive)
+            และส่งไฟฟ้าที่ผลิตได้เข้าสู่ระบบสายส่ง (Grid)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="parallax-breaker">
+      <div class="overlay"></div>
+      <div
+        style="position: relative; z-index: 2; color: white; text-align: center"
+      >
+        <h2 style="font-size: 2.5rem; font-family: 'Prompt', sans-serif">
+          พลังงานลม
+        </h2>
+        <p style="font-size: 1.2rem">พลังงานสะอาดที่ไม่มีวันหมด</p>
+      </div>
+    </div>
+
+    <section class="section-wrapper reveal">
+      <h2 class="section-title">ส่วนประกอบสำคัญ</h2>
+      <div class="components-wrapper">
+        <div class="turbine-visual">
+          <div class="turbine">
+            <div class="rotor">
+              <div class="blade"></div>
+              <div class="blade"></div>
+              <div class="blade"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="components-list">
+          <div class="component-item">
+            <strong>ใบพัด (Blades)</strong>
+            รับพลังงานลมให้เกิดแรงยก ออกแบบตามหลักอากาศพลศาสตร์
+          </div>
+          <div class="component-item">
+            <strong>นาเซลล์ (Nacelle)</strong>
+            ห้องเครื่องด้านบน บรรจุเกียร์และเจเนอเรเตอร์
+          </div>
+          <div class="component-item">
+            <strong>หอคอย (Tower)</strong>
+            ความสูงช่วยให้รับลมได้แรงและสม่ำเสมอยิ่งขึ้น
+          </div>
+          <div class="component-item">
+            <strong>ชุดเกียร์ (Gearbox)</strong>
+            หัวใจสำคัญในการทดรอบเพื่อผลิตไฟฟ้า (ในบางรุ่นอาจไม่มี)
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
+
+<style>
+  .fchoice-container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+  }
+  #sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 2000;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #sticky-header .btn-back {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    pointer-events: auto;
+    font-size: 1rem;
+    padding: 10px 25px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+  }
+  #sticky-header .btn-back:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  #sticky-header h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-size: 4rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    color: #fff;
+    white-space: nowrap;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  #sticky-header.shrink {
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+  }
+  #sticky-header.shrink .btn-back {
+    top: 50%;
+    transform: translateY(-50%);
+    border-color: #eff4ac;
+    color: #eff4ac;
+  }
+  #sticky-header.shrink h1 {
+    font-size: 1.5rem;
+    color: #eff4ac;
+  }
+  #sticky-header.shrink .btn-back span {
+    display: none !important;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px #000;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .nav-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 2000;
+
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .nav-btn:hover {
+    background: #eff4ac;
+    transform: scale(1.1);
+    border-color: #eff4ac;
+  }
+
+  .nav-btn span {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .nav-btn:hover span {
+    color: #000;
+  }
+
+  .nav-btn.rotate span {
+    transform: rotate(180deg);
+  }
+  .wind-page-scope {
+    --primary-color: #00796b;
+    --secondary-color: #4db6ac;
+    --text-color: #333;
+    --bg-light: #f4f9f9;
+    --card-bg: #ffffff;
+    --accent-yellow: #eff4ac;
+  }
+
+  .wind-page-scope {
+    font-family: "Sarabun", "Prompt", sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-color);
+    min-height: 100vh;
+  }
+
+  .wind-hero {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    animation: bounce 2s infinite;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 4px #000;
+    font-family: "Prompt", sans-serif;
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  .content-container {
+    background: var(--bg-light);
+    position: relative;
+    z-index: 10;
+    padding-bottom: 50px;
+  }
+
+  .section-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    position: relative;
+    font-family: "Prompt", sans-serif;
+  }
+
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+
+  .concept-box {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    border-left: 5px solid var(--primary-color);
+  }
+  .concept-box strong {
+    color: var(--primary-color);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .step-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--secondary-color);
+    position: relative;
+  }
+  .step-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .step-number {
+    font-size: 3rem;
+    color: rgba(0, 121, 107, 0.1);
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+
+  .step-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-family: "Prompt", sans-serif;
+  }
+
+  .parallax-breaker {
+    background-image: url("https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .parallax-breaker .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .components-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  .turbine-visual {
+    flex: 1;
+    min-width: 300px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+  }
+  .turbine {
+    width: 12px;
+    height: 250px;
+    background: #555;
+    position: relative;
+  }
+  .turbine::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -12px;
+    width: 36px;
+    height: 15px;
+    background: #444;
+    border-radius: 5px 5px 0 0;
+  }
+  .rotor {
+    width: 24px;
+    height: 24px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: -12px;
+    left: -6px;
+    animation: spin 6s linear infinite;
+    z-index: 2;
+  }
+  .blade {
+    width: 10px;
+    height: 140px;
+    background: var(--secondary-color);
+    position: absolute;
+    left: 7px;
+    bottom: 12px;
+    border-radius: 50% 50% 0 0;
+    transform-origin: bottom center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  .blade:nth-child(1) {
+    transform: rotate(0deg);
+  }
+  .blade:nth-child(2) {
+    transform: rotate(120deg);
+  }
+  .blade:nth-child(3) {
+    transform: rotate(240deg);
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .components-list {
+    flex: 1;
+    min-width: 300px;
+  }
+  .component-item {
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 5px 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+  }
+  .component-item:hover {
+    padding-left: 25px;
+  }
+  .component-item strong {
+    display: block;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+  }
+
+  .reveal.active-anim {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media screen and (max-width: 768px) {
+    #sticky-header h1 {
+      font-size: 2rem; 
+      width: 70%;
+      text-align: center;
+      white-space: normal;
+    }
+
+    #sticky-header .btn-back {
+      top: 25px;
+      left: 20px;
+    }
+    #sticky-header.shrink .btn-back {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .section-title {
+      font-size: 1.6rem; 
+      margin-bottom: 30px;
+    }
+
+    .concept-box {
+      padding: 25px 20px;
+      font-size: 1rem; 
+    }
+
+    .step-card h3 {
+      font-size: 1.2rem; 
+    }
+    .step-number {
+      font-size: 2.5rem; 
+    }
+
+    .parallax-breaker {
+      height: 300px;
+    }
+    .parallax-breaker h2 {
+      font-size: 1.8rem !important;
+    }
+    .parallax-breaker p {
+      font-size: 1rem !important;
+    }
+
+    .turbine-visual {
+      transform: scale(0.65); 
+      height: 280px;
+      margin-bottom: -30px;
+    }
+
+    .scroll-hint {
+      font-size: 1rem;
+      bottom: 80px;
+    }
+  }
+</style>
