@@ -1,19 +1,12 @@
 let historyStack = [];
 
-// ฟังก์ชันสำหรับปุ่ม Scroll Down
 function scrollToContent() {
   const activePage = document.querySelector(".page.active");
   if (!activePage) return;
-
   const scrollContainer = activePage.querySelector(".fchoice-container");
-  // หาจุดเริ่มต้น Content (รองรับ ID 'content-start' จากหน้าใหม่)
   const target = activePage.querySelector("#content-start") || activePage.querySelector("section:nth-of-type(2)");
-
   if (scrollContainer && target) {
-    scrollContainer.scrollTo({
-      top: target.offsetTop,
-      behavior: "smooth"
-    });
+    scrollContainer.scrollTo({ top: target.offsetTop, behavior: "smooth" });
   }
 }
 
@@ -22,14 +15,17 @@ function scrollToNext() {
   if (!activePage) return;
   const scrollContainer = activePage.querySelector(".fchoice-container");
   if (!scrollContainer) return;
-  const sections = activePage.querySelectorAll("section");
+  
+  const sections = activePage.querySelectorAll("section, .spotlight-section");
 
   const currentScroll = scrollContainer.scrollTop;
   const viewportHeight = scrollContainer.clientHeight;
+  
   if (currentScroll + viewportHeight >= scrollContainer.scrollHeight - 50) {
     scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
     return;
   }
+
   for (let i = 0; i < sections.length; i++) {
     const sectionTop = sections[i].offsetTop;
     if (sectionTop > currentScroll + 10) {
@@ -39,7 +35,6 @@ function scrollToNext() {
   }
 }
 
-// *** หัวใจสำคัญ: ฟังก์ชัน Animation ที่ปรับปรุงแล้ว ***
 function setupScrollAnimation() {
   const activePage = document.querySelector(".page.active");
   if (!activePage) return;
@@ -48,34 +43,26 @@ function setupScrollAnimation() {
   const scrollContainer = activePage.querySelector(".fchoice-container");
   const scrollBtn = activePage.querySelector("#scroll-btn");
   
-  // จับทั้ง Section เดิม (.card-section) และ Section ใหม่ที่เป็น .reveal
-  const elementsToObserve = activePage.querySelectorAll(".card-section, .reveal");
+  const elementsToObserve = activePage.querySelectorAll(".card-section, .reveal, .spotlight-section");
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        // กรณีหน้าเก่า: หา .content-box และ img
         const content = entry.target.querySelector(".content-box");
         const img = entry.target.querySelector("img");
-        
-        // กรณีหน้าใหม่: ตัว entry เองคือ .reveal
         const isRevealSection = entry.target.classList.contains("reveal");
 
         if (entry.isIntersecting) {
           if (content) content.classList.add("active-anim");
           if (img) img.classList.add("active-anim");
-          // ใส่ active-anim ให้กับตัว section ของหน้าใหม่
           if (isRevealSection) entry.target.classList.add("active-anim");
         } else {
           if (content) content.classList.remove("active-anim");
           if (img) img.classList.remove("active-anim");
-          // หมายเหตุ: หน้าใหม่มักไม่ค่อย remove class ออกเพื่อให้มันโชว์ค้างไว้ 
-          // แต่ถ้าอยากให้ fade-out ตอนเลื่อนผ่านก็ uncomment บรรทัดล่าง
-          // if (isRevealSection) entry.target.classList.remove("active-anim");
         }
       });
     },
-    { threshold: 0.2 } // ปรับความไวในการตรวจจับ
+    { threshold: 0.2 }
   );
 
   elementsToObserve.forEach((section) => sectionObserver.observe(section));
@@ -86,31 +73,22 @@ function setupScrollAnimation() {
       const viewportHeight = scrollContainer.clientHeight;
       const scrollHeight = scrollContainer.scrollHeight;
 
-      // Header Shrink Effect
       if (scrollTop > 50) {
         header.classList.add("shrink");
       } else {
         header.classList.remove("shrink");
       }
 
-      // Scroll Button Logic
       if (scrollBtn) {
         const isBottom = scrollTop + viewportHeight >= scrollHeight - 50;
         
-        // เพิ่ม: ซ่อนปุ่มเมื่อเลื่อนลงมาลึกๆ (สำหรับหน้ากังหันลม)
-        if (scrollTop > 400) {
-            scrollBtn.style.opacity = '0';
-            scrollBtn.style.pointerEvents = 'none';
+        scrollBtn.style.opacity = '1';
+        scrollBtn.style.pointerEvents = 'auto';
+
+        if (isBottom) {
+          scrollBtn.classList.add("rotate");
         } else {
-            scrollBtn.style.opacity = '1';
-            scrollBtn.style.pointerEvents = 'auto';
-            // Logic เดิม: หมุนปุ่มถ้าอยู่ล่างสุด (ถ้ายังมองเห็น)
-            if (isBottom) {
-              scrollBtn.classList.add("rotate");
-              scrollBtn.style.opacity = '1'; // บังคับโชว์ถ้าสุดหน้า
-            } else {
-              scrollBtn.classList.remove("rotate");
-            }
+          scrollBtn.classList.remove("rotate");
         }
       }
     };
@@ -163,7 +141,6 @@ async function showPage(pageId, filePath, saveHistory = true) {
   } else {
     console.error("ไม่พบหน้านี้ใน HTML: " + pageId);
   }
-  console.log("History:", historyStack);
 }
 
 function goBack() {
@@ -244,5 +221,4 @@ function observeCardVisibility() {
   scrollContainer.scrollTop = 0;
 }
 
-// เริ่มต้นโหลดหน้าแรก
 showPage("homepage", "pages/home.html", false);
