@@ -1,8 +1,20 @@
+@font-face {
+    font-family: 'PK Nakhon Pathom';
+    src: url('./fonts/PK\ Nakhon\ Pathom\ Demo.ttf') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: "PK Nakhon Pathom", sans-serif !important;
+}
+
 body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    font-family: "PK Nakhon Pathom", sans-serif;
 }
 
 .page {
@@ -10,13 +22,13 @@ body {
     animation: fadeIn 0.5s;
 }
 
-.page.active{
+.page.active {
     display: block;
 }
 
 @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #globalBackBtn {
@@ -33,6 +45,8 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: none; 
+    
+    font-family: "PK Nakhon Pathom", sans-serif !important;
 }
 
 #globalBackBtn:hover {
