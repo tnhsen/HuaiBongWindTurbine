@@ -1,6 +1,6 @@
 <div class="fchoice-container wind-page-scope" id="mainContainer">
   <nav id="sticky-header">
-    <button class="btn-back" onclick="goBack()">❮ <span>ย้อนกลับ</span></button>
+    <button class="btn-back" onclick="goHome()">❮ <span>ย้อนกลับ</span></button>
     <h1>หลักการทำงาน</h1>
   </nav>
 
@@ -116,6 +116,21 @@
       </div>
     </section>
   </div>
+  
+  <footer id="endPageNav" class="sticky-footer-nav">
+    <div class="footer-content">
+      <span class="footer-text">อยากรู้จักส่วนไหนต่อมั้ยครับ?</span>
+      <div class="footer-btn-group">
+        <button class="btn-footer" onclick="showPage('fchoice', 'pages/fchoice.html')">
+          ประวัติและวิวัฒนาการ
+        </button>
+        <button class="btn-footer" onclick="showPage('tchoice', 'pages/tchoice.html')">
+          ประโยชน์ของกังหันลม
+        </button>
+      </div>
+    </div>
+  </footer>
+
 </div>
 
 <style>
@@ -514,60 +529,134 @@
     opacity: 1;
     transform: translateY(0);
   }
+  
+  .content-container {
+    padding-bottom: 150px !important; 
+  }
+
+  .sticky-footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 50, 40, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+    z-index: 3000;
+    padding: 20px 30px;
+    border-top: 1px solid #eff4ac;
+    
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  }
+
+  .sticky-footer-nav.show {
+    transform: translateY(0);
+  }
+
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: "Prompt", sans-serif;
+  }
+
+  .footer-btn-group {
+    display: flex;
+    gap: 20px;
+  }
+
+  .btn-footer {
+    font-family: "Sarabun", sans-serif;
+    font-size: 18px;
+    
+    padding: 12px 35px; 
+    
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: transparent;
+    border: 2px solid #eff4ac;
+    color: #eff4ac;
+    transition: all 0.3s;
+    white-space: nowrap; 
+  }
+
+  .btn-footer:hover {
+    background-color: #eff4ac;
+    color: #000;
+    box-shadow: 0 0 15px #eff4ac;
+    transform: scale(1.05); 
+  }
+  .btn-footer.primary {
+    background-color: #eff4ac;
+    color: #000;
+  }
+  .btn-footer.primary:hover {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255,255,255,0.8);
+  }
 
   @media screen and (max-width: 768px) {
-    #sticky-header h1 {
-      font-size: 2rem; 
-      width: 70%;
-      text-align: center;
-      white-space: normal;
+    #sticky-header h1 { font-size: 2rem; width: 70%; text-align: center; white-space: normal; }
+    #sticky-header .btn-back { top: 25px; left: 20px; }
+    #sticky-header.shrink .btn-back { top: 50%; transform: translateY(-50%); }
+    .section-title { font-size: 1.6rem; margin-bottom: 30px; }
+    .concept-box { padding: 25px 20px; font-size: 1rem; }
+    .step-card h3 { font-size: 1.2rem; }
+    .step-number { font-size: 2.5rem; }
+    .parallax-breaker { height: 300px; }
+    .parallax-breaker h2 { font-size: 1.8rem !important; }
+    .parallax-breaker p { font-size: 1rem !important; }
+    .turbine-visual { transform: scale(0.65); height: 280px; margin-bottom: -30px; }
+    .scroll-hint { font-size: 1rem; bottom: 80px; }
+
+    .sticky-footer-nav {
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      
+      padding: 20px 20px 35px 20px; 
+      
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
     }
 
-    #sticky-header .btn-back {
-      top: 25px;
-      left: 20px;
-    }
-    #sticky-header.shrink .btn-back {
-      top: 50%;
-      transform: translateY(-50%);
+    .footer-text {
+      display: none;
     }
 
-    .section-title {
-      font-size: 1.6rem; 
-      margin-bottom: 30px;
+    .footer-btn-group {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 12px;
+      width: 100%;
     }
 
-    .concept-box {
-      padding: 25px 20px;
-      font-size: 1rem; 
-    }
-
-    .step-card h3 {
-      font-size: 1.2rem; 
-    }
-    .step-number {
-      font-size: 2.5rem; 
-    }
-
-    .parallax-breaker {
-      height: 300px;
-    }
-    .parallax-breaker h2 {
-      font-size: 1.8rem !important;
-    }
-    .parallax-breaker p {
-      font-size: 1rem !important;
-    }
-
-    .turbine-visual {
-      transform: scale(0.65); 
-      height: 280px;
-      margin-bottom: -30px;
-    }
-
-    .scroll-hint {
-      font-size: 1rem;
-      bottom: 80px;
+    .btn-footer {
+      box-sizing: border-box;
+      width: 100%;
+      font-size: 16px; 
+      white-space: normal; 
+      line-height: 1.2;  
+      
+      padding: 12px 15px; 
+      min-height: 50px; 
+      
+      display: flex; 
+      align-items: center;
+      justify-content: center;
     }
   }
 </style>

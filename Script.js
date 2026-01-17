@@ -1,4 +1,16 @@
 let historyStack = [];
+function resetPageAnimations(activePage) {
+  if (!activePage) return;
+  const animatedElements = activePage.querySelectorAll(".active-anim");
+  animatedElements.forEach((el) => el.classList.remove("active-anim"));
+  const header = activePage.querySelector("#sticky-header");
+  if (header) header.classList.remove("shrink");
+  const scrollBtn = activePage.querySelector("#scroll-btn");
+  if (scrollBtn) {
+    scrollBtn.classList.remove("rotate");
+    scrollBtn.style.opacity = '0'; 
+  }
+}
 
 function scrollToContent() {
   const activePage = document.querySelector(".page.active");
@@ -22,7 +34,12 @@ function scrollToNext() {
   const viewportHeight = scrollContainer.clientHeight;
   
   if (currentScroll + viewportHeight >= scrollContainer.scrollHeight - 50) {
+    
     scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+        resetPageAnimations(activePage);
+    }, 100);
+    
     return;
   }
 
@@ -43,26 +60,34 @@ function setupScrollAnimation() {
   const scrollContainer = activePage.querySelector(".fchoice-container");
   const scrollBtn = activePage.querySelector("#scroll-btn");
   
-  const elementsToObserve = activePage.querySelectorAll(".card-section, .reveal, .spotlight-section");
+  const footerNav = activePage.querySelector("#endPageNav"); 
+  
+  const elementsToObserve = activePage.querySelectorAll(".card-section, .reveal, .spotlight-section, .content-box");
 
   const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
+
         const content = entry.target.querySelector(".content-box");
         const img = entry.target.querySelector("img");
+        
         const isRevealSection = entry.target.classList.contains("reveal");
+        const isContentBox = entry.target.classList.contains("content-box");
 
         if (entry.isIntersecting) {
           if (content) content.classList.add("active-anim");
           if (img) img.classList.add("active-anim");
           if (isRevealSection) entry.target.classList.add("active-anim");
+          if (isContentBox) entry.target.classList.add("active-anim");
         } else {
           if (content) content.classList.remove("active-anim");
           if (img) img.classList.remove("active-anim");
+          if (isRevealSection) entry.target.classList.remove("active-anim");
+          if (isContentBox) entry.target.classList.remove("active-anim");
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.15 }
   );
 
   elementsToObserve.forEach((section) => sectionObserver.observe(section));
@@ -79,16 +104,29 @@ function setupScrollAnimation() {
         header.classList.remove("shrink");
       }
 
+      const isBottom = scrollTop + viewportHeight >= scrollHeight - 80;
+
       if (scrollBtn) {
-        const isBottom = scrollTop + viewportHeight >= scrollHeight - 50;
-        
-        scrollBtn.style.opacity = '1';
-        scrollBtn.style.pointerEvents = 'auto';
+
+        if (scrollTop > 100) {
+            scrollBtn.style.opacity = '1';
+            scrollBtn.style.pointerEvents = 'auto';
+        } else {
+            scrollBtn.style.opacity = '0';
+            scrollBtn.style.pointerEvents = 'none';
+        }
 
         if (isBottom) {
           scrollBtn.classList.add("rotate");
         } else {
           scrollBtn.classList.remove("rotate");
+        }
+      }
+      if (footerNav) {
+        if (isBottom) {
+          footerNav.classList.add("show");
+        } else {
+          footerNav.classList.remove("show");
         }
       }
     };
@@ -110,6 +148,7 @@ async function showPage(pageId, filePath, saveHistory = true) {
   const selectedPage = document.getElementById(pageId);
 
   if (selectedPage) {
+
     if (filePath && selectedPage.innerHTML.trim() === "") {
       try {
         const response = await fetch(filePath);
@@ -120,7 +159,11 @@ async function showPage(pageId, filePath, saveHistory = true) {
         console.error("Error loading file:", error);
       }
     }
+    
     selectedPage.classList.add("active");
+    
+    resetPageAnimations(selectedPage);
+
     if (pageId === "istrue") {
       setTimeout(() => {
         observeCardVisibility();
@@ -128,12 +171,8 @@ async function showPage(pageId, filePath, saveHistory = true) {
     }
 
     const scrollContainer = selectedPage.querySelector(".fchoice-container");
-    const header = selectedPage.querySelector("#sticky-header");
-    const scrollBtn = selectedPage.querySelector("#scroll-btn");
-
+    
     if (scrollContainer) scrollContainer.scrollTop = 0;
-    if (header) header.classList.remove("shrink");
-    if (scrollBtn) scrollBtn.classList.remove("rotate");
 
     setTimeout(() => {
       setupScrollAnimation();
@@ -150,6 +189,11 @@ function goBack() {
   }
   const previousPageId = historyStack.pop();
   showPage(previousPageId, null, false);
+}
+
+function goHome() {
+  historyStack = ['homepage'];
+  showPage('istrue', 'pages/istrue.html', false);
 }
 
 function handleCardInteraction(event) {

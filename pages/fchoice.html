@@ -1,6 +1,6 @@
 <div class="fchoice-container">
   <nav id="sticky-header">
-    <button class="btn-back" onclick="goBack()">❮ <span>ย้อนกลับ</span></button>
+    <button class="btn-back" onclick="goHome()">❮ <span>ย้อนกลับ</span></button>
     <h1>ประวัติและวิวัฒนาการ</h1>
   </nav>
 
@@ -10,14 +10,14 @@
 
   <section
     class="card-section"
-    style="background-image: url('./image/fchoice.jpg')"
+    style="background-image: url(&quot;./image/fchoice.jpg&quot;)"
   >
     <div class="scroll-hint">เลื่อนลงเพื่อดูเรื่องราว</div>
   </section>
 
   <section
     class="card-section split-screen"
-    style="background-image: url('./image/background.jpg')"
+    style="background-image: url(&quot;./image/background.jpg&quot;)"
   >
     <div class="content-box left-col intro-box">
       <p>
@@ -45,13 +45,11 @@
 
   <section
     class="card-section split-screen full-split"
-    style="background-image: url('./image/bg2.jpg')"
+    style="background-image: url(&quot;./image/bg2.jpg&quot;)"
   >
     <div class="media-box left-col"></div>
     <div class="right-col empty">
-      <div
-        class="content-box intro-box"
-      >
+      <div class="content-box intro-box">
         <p>
           <b>ครอบคลุมพื้นที่กว่า 10,000 ไร่</b>
         </p>
@@ -65,12 +63,10 @@
 
   <section
     class="card-section split-screen full-split"
-    style="background-image: url('./image/background.jpg')"
+    style="background-image: url(&quot;./image/background.jpg&quot;)"
   >
     <div class="left-col empty">
-      <div
-        class="content-box intro-box"
-      >
+      <div class="content-box intro-box">
         <p>
           ปัจจุบัน<br />
           ทุ่งกังหันลมห้วยบงได้รับการส่งเสริมเป็น
@@ -84,13 +80,23 @@
     <div class="media-box right-col"></div>
   </section>
 
-  <section class="card-section" style="background-image: url('./image/background.jpg')">
+  <section
+    class="card-section"
+    style="background-image: url(&quot;./image/background.jpg&quot;)"
+  >
     <div class="content-box center intro-box">
       <p>
         <b>ขอบคุณที่ติดตาม</b>
       </p>
+      <p style="margin-bottom: 30px">อยากรู้จักส่วนไหนต่อมั้ยครับ?</p>
 
-      <p>อย่าลืมแวะไปเที่ยวชมของจริงนะครับ!</p>
+      <div class="end-buttons-container">
+        <button class="btn-next" onclick="showPage('schoice', 'pages/schoice.html')">หลักการทำงาน</button>
+
+        <button class="btn-next" onclick="showPage('tchoice', 'pages/tchoice.html')">
+          ประโยชน์ของกังหันลม
+        </button>
+      </div>
     </div>
   </section>
 </div>
@@ -193,7 +199,6 @@
   }
 
   .content-box {
-    
     padding: 40px;
     border-radius: 20px;
     max-width: 500px;
@@ -201,13 +206,13 @@
 
     text-align: center;
     color: #fff;
-    
+
     transform: translateY(50px);
     opacity: 0;
   }
 
   .content-box.center.intro-box,
-  .content-box.left-col.intro-box{
+  .content-box.left-col.intro-box {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -421,6 +426,52 @@
     animation: slideInRight 1s forwards 0.5s;
   }
 
+  /* --- สไตล์สำหรับปุ่มจบหน้า --- */
+  .end-buttons-container {
+    display: flex;
+    gap: 20px; /* ระยะห่างระหว่างปุ่ม */
+    justify-content: center;
+    flex-wrap: wrap; /* ให้ปุ่มตกบรรทัดเมื่อจอเล็ก */
+    width: 100%;
+  }
+
+  .btn-next {
+    font-family: "Sarabun", sans-serif; /* บังคับใช้ฟอนต์ไทย */
+    font-size: 24px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    background-color: transparent;
+    border: 3px solid #eff4ac;
+    color: #eff4ac;
+    white-space: nowrap;
+  }
+
+  .btn-next:hover {
+    background-color: #eff4ac;
+    color: black;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #eff4ac;
+  }
+
+  /* ปรับขนาดปุ่มสำหรับมือถือ */
+  @media screen and (max-width: 768px) {
+    .end-buttons-container {
+      flex-direction: column; /* เรียงปุ่มแนวตั้งในมือถือ */
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn-next {
+      font-size: 18px;
+      padding: 10px 25px;
+      width: 100%; /* ให้ปุ่มกว้างเต็มกล่อง */
+      max-width: 200px;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     .fchoice-container,
     .card-section {
@@ -507,11 +558,11 @@
     .card-section.split-screen.full-split .left-col.empty {
       background-color: transparent;
       backdrop-filter: none;
-      width: 100%
+      width: 100%;
     }
 
-    .split-screen.full-split .content-box{
-      background: rgba(0, 0, 0, 0.6); 
+    .split-screen.full-split .content-box {
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(5px);
     }
 
